@@ -1,11 +1,9 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import Header from '../components/Header'
+import Layout from "@layout/MainLayout";
 
 export default function Home() {
   return (
-    <>
-      <Header />
-    </>
-  )
+    <Layout>
+      <h1>Página de Inicio</h1>
+    </Layout>
+  );
 }

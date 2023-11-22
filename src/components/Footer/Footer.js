@@ -142,7 +142,7 @@ export default function Header() {
         <div class="bg-gray-300">
           <div class="container mx-auto px-5 py-4">
             <p class="text-sm capitalize text-gray-700 xl:text-center">
-              © 2023 Todos derechos reservados{" "}
+              © 2023 Lunal's Fashion Design. Todos derechos reservados{" "}
             </p>
           </div>
         </div>

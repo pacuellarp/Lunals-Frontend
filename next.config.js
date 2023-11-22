@@ -3,18 +3,23 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'img.icons8.com',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "img.icons8.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "drive.google.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },
-}
-
+};
 
 module.exports = {
   webpack: (config, options) => {
@@ -24,4 +29,4 @@ module.exports = {
   },
 };
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -1,9 +1,10 @@
 import Layout from "@layout/MainLayout";
+import Carousel from "@components/Carousel/Carousel";
 
 export default function Home() {
   return (
     <Layout>
-      <h1>Página de Inicio</h1>
+      <Carousel />
     </Layout>
   );
 }

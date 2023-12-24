@@ -44,13 +44,18 @@ export default function Carousel() {
     }
   }, [headerHeight]);
 
+  let carouselMessages = [
+    ["Lorem ipsum", "Lorem ipsum"],
+    ["Lorem ipsum", "Lorem ipsum"],
+  ];
+
   return (
     <>
       <Swiper
         direction={"vertical"}
         slidesPerView={1}
         spaceBetween={30}
-        mousewheel={{ releaseOnEdges: true }}
+        mousewheel={{ releaseOnEdges: true, thresholdTime: 500 }}
         pagination={{
           clickable: true,
         }}
@@ -67,19 +72,43 @@ export default function Carousel() {
                 height={1024}
                 className="block h-full w-full object-cover"
                 alt={`Slide ${index}`}
+                style={{ objectPosition: "top" }} // Ajuste para mostrar desde la parte superior
               />
+              <figcaption className="absolute left-40 top-1/2 w-full max-w-xl -translate-y-1/2 transform text-left text-white">
+                <h2
+                  className="font-inter mb-2 text-base font-medium sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"
+                  style={{
+                    color: "#EFE2E2",
+                    textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                  }}
+                >
+                  {carouselMessages[index][0]}
+                </h2>
+                <p
+                  className="font-inter mb-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
+                  style={{
+                    color: "#EFE2E2",
+                    textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                  }}
+                >
+                  {carouselMessages[index][1]}
+                </p>
+              </figcaption>
             </figure>
-            <figcaption className="text-container">Photo {index}</figcaption>
           </SwiperSlide>
         ))}
 
         {videos.map((video, index) => (
           <SwiperSlide key={video.id}>
-            <YoutubeVideo
-              videoId={video.link}
-              className="block h-full w-full object-cover"
-              alt={`SlideV ${index}`}
-            />
+            <div
+              style={{ position: "relative", width: "100%", height: "100%" }}
+            >
+              <YoutubeVideo
+                videoId={video.link}
+                className="block h-full w-full object-cover"
+                alt={`SlideV ${index}`}
+              />
+            </div>
             <figcaption className="text-container">Video {index}</figcaption>
           </SwiperSlide>
         ))}

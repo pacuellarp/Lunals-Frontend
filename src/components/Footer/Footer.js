@@ -24,7 +24,7 @@ export default function Header() {
             <div class="mt-4">
               <span class="mt-2 inline-flex justify-center sm:ml-auto sm:mt-0 sm:justify-start">
                 <a
-                  href="https://www.facebook.com/lunalsfasiondesign"
+                  href="https://www.facebook.com/lunalsfasiondesign/"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="cursor-pointer text-gray-500 hover:text-gray-700"
@@ -142,7 +142,8 @@ export default function Header() {
         <div class="bg-gray-300">
           <div class="container mx-auto px-5 py-4">
             <p class="text-sm capitalize text-gray-700 xl:text-center">
-              © 2023 Lunal's Fashion Design. Todos derechos reservados{" "}
+              © {new Date().getFullYear()} Lunal's Fashion Design. Todos
+              derechos reservados{" "}
             </p>
           </div>
         </div>

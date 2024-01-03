@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getGenders } from "@services/GenderService";
 import { getCategories } from "@services/CategoriesService";
-import { getProducts } from "@services/ProductService";
+import { getProducts } from "@services/ProductsService";
 import { getPhotos } from "@services/PhotosService";
 import Layout from "@layout/MainLayout";
 import Card from "@components/ProductCard/ProductCard";
@@ -93,11 +93,7 @@ const CategoryPage = ({ category }) => {
 export async function getServerSideProps({ params }) {
   const { category } = params;
   const categoryData0 = await getCategories(1);
-  const categoryData = categoryData0.find(
-    (cat) =>
-      cat.name ===
-      `${category.charAt(0).toUpperCase()}` + `${category.slice(1)}`,
-  );
+  const categoryData = categoryData0.find((cat) => cat.id === category * 1);
 
   return {
     props: {

@@ -1,10 +1,10 @@
 import getEntity from "@services/api/Get";
 
-export async function getProduct(productId) {
+export async function getProducts(categoryId) {
   try {
     const response0 = await getEntity("products");
     let response = response0.filter(function (product) {
-      return product.id === productId;
+      return product.categoryId === categoryId;
     });
     return response;
   } catch (error) {

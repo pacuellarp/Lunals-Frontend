@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getSizes } from "@services/SizesServices";
 import { getColors } from "@services/ColorsService";
+import { useCart } from "@context/CartContext";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,6 +14,7 @@ const BuyAction = ({ product }) => {
   const [selectedColour, setSelectedColour] = useState(null);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [buttonHovered, setButtonHovered] = useState(false);
+  const { cart, setCart } = useCart();
   const sizesPerDefault = ["XS", "S", "M", "L"];
 
   useEffect(() => {
@@ -97,13 +99,16 @@ const BuyAction = ({ product }) => {
   const handleAddToCart = () => {
     // Verificar que se haya seleccionado talla, color y cantidad
     if (selectedSize && selectedColour && selectedQuantity > 0) {
-      // Enviar la información al componente del carrito (a implementar)
-      addToCartHandler({
-        product: product,
-        size: sizes[selectedSize - 1],
-        colour: colours[selectedColour - 1],
-        quantity: selectedQuantity,
-      });
+      // Actualizar el carrito en el contexto
+      setCart((prevCart) => [
+        ...prevCart,
+        {
+          product: product,
+          size: sizes[selectedSize - 1],
+          colour: colours[selectedColour - 1],
+          quantity: selectedQuantity,
+        },
+      ]);
 
       // Restablecer los estados después de agregar al carrito
       setSelectedSize(null);
@@ -189,7 +194,7 @@ const BuyAction = ({ product }) => {
         onMouseOver={() => setButtonHovered(true)}
         onMouseOut={() => setButtonHovered(false)}
         //onClick={handleAddToCart}
-        onClick={console.log()}
+        onClick={handleAddToCart}
       >
         ADICIONAR AL CARRITO
       </button>

@@ -14,7 +14,7 @@ const BuyAction = ({ product }) => {
   const [selectedColour, setSelectedColour] = useState(null);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [buttonHovered, setButtonHovered] = useState(false);
-  const { cart, setCart } = useCart();
+  const { addToCart } = useCart();
   const sizesPerDefault = ["XS", "S", "M", "L"];
 
   useEffect(() => {
@@ -100,15 +100,12 @@ const BuyAction = ({ product }) => {
     // Verificar que se haya seleccionado talla, color y cantidad
     if (selectedSize && selectedColour && selectedQuantity > 0) {
       // Actualizar el carrito en el contexto
-      setCart((prevCart) => [
-        ...prevCart,
-        {
-          product: product,
-          size: sizes[selectedSize - 1],
-          colour: colours[selectedColour - 1],
-          quantity: selectedQuantity,
-        },
-      ]);
+      addToCart({
+        product: product,
+        size: sizes[selectedSize - 1],
+        colour: colours[selectedColour - 1],
+        quantity: selectedQuantity,
+      });
 
       // Restablecer los estados después de agregar al carrito
       setSelectedSize(null);
@@ -193,7 +190,6 @@ const BuyAction = ({ product }) => {
         } transition duration-300 ease-in-out`}
         onMouseOver={() => setButtonHovered(true)}
         onMouseOut={() => setButtonHovered(false)}
-        //onClick={handleAddToCart}
         onClick={handleAddToCart}
       >
         ADICIONAR AL CARRITO

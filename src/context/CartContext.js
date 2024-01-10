@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 const CartContext = createContext();
 
@@ -31,6 +37,11 @@ const cartReducer = (state, action) => {
 
 export const CartProvider = ({ children }) => {
   const [cart, dispatch] = useReducer(cartReducer, []);
+  const [cartCount, setCartCount] = useState(0); // Nuevo estado
+
+  useEffect(() => {
+    setCartCount(cart.length);
+  }, [cart]);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart"));
@@ -69,6 +80,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         updateQuantity,
+        cartCount,
       }}
     >
       {children}

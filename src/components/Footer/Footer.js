@@ -8,7 +8,7 @@ export default function Header() {
       <footer class="body-font w-full bg-gray-100 text-gray-700">
         <div class="md:flex-no-wrap container mx-auto flex flex-col flex-wrap px-5 py-24 md:items-center lg:flex-row lg:items-start">
           <div class="mx-auto w-64 flex-shrink-0 justify-center text-center md:mx-0 md:justify-center lg:justify-start ">
-            <a class="title-font flex items-center justify-center font-medium text-gray-900">
+            <Link href="/" className="flex items-center justify-center">
               <figure class="lg:w-1/14 xl:w-1/14 md:w-1/14 h-auto w-16">
                 <Image
                   src={logo}
@@ -20,7 +20,7 @@ export default function Header() {
                   class="object-cover"
                 />
               </figure>
-            </a>
+            </Link>
             <div class="mt-4">
               <span class="mt-2 inline-flex justify-center sm:ml-auto sm:mt-0 sm:justify-start">
                 <a

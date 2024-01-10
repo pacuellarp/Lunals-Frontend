@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { getGenders } from "@services/GenderService";
 import { getCategories } from "@services/CategoriesService";
 import { getProducts } from "@services/ProductsService";
@@ -76,13 +77,15 @@ const CategoryPage = ({ category }) => {
         <div class="flex flex-col items-center py-12 md:grid md:grid-cols-2 md:pl-12 lg:grid-cols-3">
           {cardStatus &&
             products.map((product, index) => (
-              <Card
-                photo1={photos[index][0]}
-                photo2={photos[index][1]}
-                gender={genders[index]}
-                sizes={[{ name: "XS" }, { name: "S" }]}
-                product={product}
-              />
+              <Link href={`/product/${product.id}`}>
+                <Card
+                  photo1={photos[index][0]}
+                  photo2={photos[index][1]}
+                  gender={genders[index]}
+                  sizes={[{ name: "XS" }, { name: "S" }]}
+                  product={product}
+                />
+              </Link>
             ))}
         </div>
       </div>

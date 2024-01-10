@@ -5,7 +5,7 @@ const ShoppingCart = () => {
   const [buttonHovered, setButtonHovered] = useState(false);
   const { cart, removeFromCart, updateQuantity } = useCart();
 
-  const phoneNumber = "573188222645"; // Reemplaza con el número de teléfono deseado
+  const phoneNumber = "573185575555"; // Reemplaza con el número de teléfono deseado
   let defaultMessage = "¡Hola! Estoy interesado en ";
 
   const handleRemove = (index) => {

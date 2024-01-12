@@ -143,7 +143,7 @@ export default function Header() {
           <div class="container mx-auto px-5 py-4">
             <p class="text-sm capitalize text-gray-700 xl:text-center">
               © {new Date().getFullYear()} Lunal's Fashion Design. Todos
-              derechos reservados{" "}
+              derechos reservados.
             </p>
           </div>
         </div>

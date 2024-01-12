@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-export default function Card({ photo1, photo2, gender, sizes, product }) {
+export default function ProductCard({
+  photo1,
+  photo2,
+  gender,
+  sizes,
+  product,
+}) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (

@@ -11,7 +11,6 @@ export default function Header() {
   const [animateCategories, setAnimateCategories] = useState(false);
 
   const { cartCount } = useCart();
-  console.log(cartCount);
 
   const { setHeaderHeight } = useContext(HeaderContext);
   const ref = useRef();
@@ -90,6 +89,7 @@ export default function Header() {
                 className="h-auto w-6 md:w-8"
                 quality={100}
                 alt="Cart"
+                title="Carrito de compras"
               />
               <div
                 className={`${

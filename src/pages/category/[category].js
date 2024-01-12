@@ -5,7 +5,7 @@ import { getCategories } from "@services/CategoriesService";
 import { getProducts } from "@services/ProductsService";
 import { getPhotos } from "@services/PhotosService";
 import Layout from "@layout/MainLayout";
-import Card from "@components/ProductCard/ProductCard";
+import ProductCard from "@components/ProductCard/ProductCard";
 
 const CategoryPage = ({ category }) => {
   const [products, setProducts] = useState([]);
@@ -78,7 +78,7 @@ const CategoryPage = ({ category }) => {
           {cardStatus &&
             products.map((product, index) => (
               <Link href={`/product/${product.id}`}>
-                <Card
+                <ProductCard
                   photo1={photos[index][0]}
                   photo2={photos[index][1]}
                   gender={genders[index]}

@@ -14,7 +14,7 @@ const BuyAction = ({ product }) => {
   const [selectedColour, setSelectedColour] = useState(null);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [buttonHovered, setButtonHovered] = useState(false);
-  const { addToCart } = useCart();
+  const { cart, addToCart } = useCart();
   const sizesPerDefault = ["XS", "S", "M", "L"];
 
   useEffect(() => {
@@ -96,24 +96,52 @@ const BuyAction = ({ product }) => {
     setSelectedQuantity(parseInt(event.target.value));
   };
 
-  const handleAddToCart = () => {
-    // Verificar que se haya seleccionado talla, color y cantidad
-    if (selectedSize && selectedColour && selectedQuantity > 0) {
-      // Actualizar el carrito en el contexto
-      addToCart({
-        product: product,
-        size: sizes[selectedSize - 1],
-        colour: colours[selectedColour - 1],
-        quantity: selectedQuantity,
-      });
+  //Función para ver si el estado cart está en sincronía con el localStorage, pra evitar productos fantasma en el carrito
+  function cartLocalStorageSynchrony(arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+      return false;
+    }
 
-      // Restablecer los estados después de agregar al carrito
-      setSelectedSize(null);
-      setSelectedColour(null);
-      setSelectedQuantity(1);
+    // Clonar los arrays para evitar modificar los originales
+    const copiaArr1 = JSON.parse(JSON.stringify(arr1));
+    const copiaArr2 = JSON.parse(JSON.stringify(arr2));
+
+    // Ordenar los arrays por sus propiedades antes de la comparación
+    copiaArr1.sort((a, b) => JSON.stringify(a) - JSON.stringify(b));
+    copiaArr2.sort((a, b) => JSON.stringify(a) - JSON.stringify(b));
+
+    // Comparar cada elemento en las posiciones correspondientes
+    return copiaArr1.every(
+      (element, index) =>
+        JSON.stringify(element) === JSON.stringify(copiaArr2[index]),
+    );
+  }
+
+  const handleAddToCart = () => {
+    //Comparación si cart está sincronizado con el localStorage
+    const storedCart = JSON.parse(localStorage.getItem("cart"));
+    const resultado = cartLocalStorageSynchrony(storedCart, cart);
+    if (resultado) {
+      // Verificar que se haya seleccionado talla, color y cantidad
+      if (selectedSize && selectedColour && selectedQuantity > 0) {
+        // Actualizar el carrito en el contexto
+        addToCart({
+          product: product,
+          size: sizes[selectedSize - 1],
+          colour: colours[selectedColour - 1],
+          quantity: selectedQuantity,
+        });
+
+        // Restablecer los estados después de agregar al carrito
+        setSelectedSize(null);
+        setSelectedColour(null);
+        setSelectedQuantity(1);
+      } else {
+        // Mostrar un mensaje de error o realizar alguna acción
+        alert("Por favor, seleccione talla, color y cantidad.");
+      }
     } else {
-      // Mostrar un mensaje de error o realizar alguna acción
-      alert("Por favor, seleccione talla, color y cantidad.");
+      alert("Error. Actualiza la pantalla.");
     }
   };
 
@@ -136,7 +164,7 @@ const BuyAction = ({ product }) => {
         </div>
         <div className="flex">
           <p className="mr-2 -rotate-45 transform text-right italic">Talla</p>
-          {sizes.map((size, index) => (
+          {sizes.map((size) => (
             <div
               key={size.id}
               className={`h-6 w-6 border ${getSizeStyle(

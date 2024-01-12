@@ -13,6 +13,7 @@ const actionTypes = {
   ADD_TO_CART: "ADD_TO_CART",
   REMOVE_FROM_CART: "REMOVE_FROM_CART",
   UPDATE_QUANTITY: "UPDATE_QUANTITY",
+  EMPTY_THE_CART: "EMPTY_THE_CART",
 };
 
 const cartReducer = (state, action) => {
@@ -29,6 +30,9 @@ const cartReducer = (state, action) => {
           ? { ...item, quantity: action.payload.quantity }
           : item,
       );
+
+    case actionTypes.EMPTY_THE_CART:
+      return [];
 
     default:
       return state;
@@ -73,6 +77,12 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const emptyTheCart = () => {
+    dispatch({
+      type: actionTypes.EMPTY_THE_CART,
+    });
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -80,6 +90,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         updateQuantity,
+        emptyTheCart,
         cartCount,
       }}
     >

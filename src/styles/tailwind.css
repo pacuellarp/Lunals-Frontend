@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('@fontsource/inter'); 
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

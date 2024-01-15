@@ -56,9 +56,6 @@ export default function Gallery({ product }) {
             />
           )}
         </figure>
-        <div className="flex flex-col">
-          <p>Descripción</p>
-        </div>
       </div>
     </div>
   );

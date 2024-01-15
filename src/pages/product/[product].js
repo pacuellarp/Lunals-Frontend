@@ -2,18 +2,27 @@ import { getProduct } from "@services/ProductService";
 import Layout from "@layout/MainLayout";
 import Gallery from "@components/Gallery/Gallery";
 import BuyAction from "@components/BuyAction/BuyAction";
+import ProductDescription from "@components/ProductDescription/ProductDescription";
 import { CartProvider } from "@context/CartContext";
 
 const ProductPage = ({ product }) => {
   return (
     <CartProvider>
       <Layout>
-        <div class="my-12 flex flex-col">
-          <h1 class="font-inter py-3 pl-6 text-left text-xl font-normal leading-normal text-black sm:text-2xl">
-            {product.name}
-          </h1>
-          <div class="flex flex-row justify-center py-9">
-            <Gallery product={product} />
+        <div className="my-12 flex flex-col">
+          <div className="flex flex-col pb-3 pl-6">
+            <h1 className="font-inter text-left text-xl leading-normal text-black sm:text-2xl">
+              {product.name}
+            </h1>
+            <p className="font-inter py-1 text-sm">
+              Ref.: {`${product.reference}`}
+            </p>
+          </div>
+          <div className="flex flex-row justify-center py-9">
+            <div className="flex flex-col">
+              <Gallery product={product} />
+              <ProductDescription product={product} />
+            </div>
             <BuyAction product={product} />
           </div>
         </div>

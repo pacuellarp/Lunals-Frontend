@@ -230,7 +230,7 @@ const BuyAction = ({ product }) => {
 
       {/* Lista numérica de cantidad */}
       <div className="mt-4 flex items-center space-x-2">
-        <p className="mr-2 font-bold">Cantidad</p>
+        <p className="mr-2">Cantidad</p>
         <select
           className="cursor-pointer border border-gray-300 p-1 transition duration-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-500"
           onChange={handleQuantityChange}

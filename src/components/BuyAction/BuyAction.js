@@ -13,6 +13,10 @@ const BuyAction = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColour, setSelectedColour] = useState(null);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const [selectedSizeObject, setSelectedSizeObject] = useState([]);
+  const [selectedColourObject, setSelectedColourObject] = useState([]);
+  const [statusColour, setStatusColour] = useState(false);
+  const [statusSize, setStatusSize] = useState(false);
   const [buttonHovered, setButtonHovered] = useState(false);
   const { cart, addToCart } = useCart();
   const sizesPerDefault = ["XS", "S", "M", "L"];
@@ -84,11 +88,31 @@ const BuyAction = ({ product }) => {
   // Manejar clic en talla
   const handleSizeClick = (size) => {
     setSelectedSize(size.id);
+    let theSize;
+    for (const element of sizes) {
+      if (element.id == size.id) {
+        theSize = element;
+      }
+    }
+
+    setSelectedSizeObject(theSize);
+
+    setStatusSize(true);
   };
 
   // Manejar clic en color
   const handleColourClick = (colour) => {
     setSelectedColour(colour.id);
+    let theColour;
+    for (const element of colours) {
+      if (element.id == colour.id) {
+        theColour = element;
+      }
+    }
+
+    setSelectedColourObject(theColour);
+
+    setStatusColour(true);
   };
 
   // Manejo de cambios en la lista numérica de cantidad
@@ -136,9 +160,11 @@ const BuyAction = ({ product }) => {
         setSelectedSize(null);
         setSelectedColour(null);
         setSelectedQuantity(1);
+        setStatusSize(false);
+        setStatusColour(false);
       } else {
         // Mostrar un mensaje de error o realizar alguna acción
-        alert("Por favor, seleccione talla, color y cantidad.");
+        alert("Por favor, selecciona talla y color.");
       }
     } else {
       alert("Error. Actualiza la pantalla.");
@@ -148,35 +174,43 @@ const BuyAction = ({ product }) => {
   return (
     <div className="flex flex-col items-center">
       {/* Filas de cuadritos para colores y tallas */}
-      <div className="mb-4 flex">
-        <div className="mr-2 flex">
-          <p className="mr-2 -rotate-45 transform text-right italic">Color</p>
-          {colours.map((colour) => (
-            <div
-              key={colour.id}
-              className="mr-2 h-6 w-6 cursor-pointer border border-gray-300"
-              style={getColourStyle(colour)}
-              onMouseOver={() => handleColourHover(colour)}
-              onMouseOut={() => handleColourHoverOut()}
-              onClick={() => handleColourClick(colour)}
-            />
-          ))}
+      <div className="mb-4 flex flex-col">
+        <div className="mx-2 my-4 flex flex-col">
+          <p className="mb-2 mr-2 transform text-left ">
+            Color: {statusColour ? `${selectedColourObject.name}` : ""}
+          </p>
+          <div className="flex flex-row">
+            {colours.map((colour) => (
+              <div
+                key={colour.id}
+                className="mr-2 h-6 w-6 cursor-pointer border border-gray-300"
+                style={getColourStyle(colour)}
+                onMouseOver={() => handleColourHover(colour)}
+                onMouseOut={() => handleColourHoverOut()}
+                onClick={() => handleColourClick(colour)}
+              />
+            ))}
+          </div>
         </div>
-        <div className="flex">
-          <p className="mr-2 -rotate-45 transform text-right italic">Talla</p>
-          {sizes.map((size) => (
-            <div
-              key={size.id}
-              className={`h-6 w-6 border ${getSizeStyle(
-                size,
-              )} mr-2 flex cursor-pointer items-center justify-center`}
-              onMouseOver={() => handleSizeHover(size)}
-              onMouseOut={() => handleSizeHoverOut()}
-              onClick={() => handleSizeClick(size)}
-            >
-              {size.name}
-            </div>
-          ))}
+        <div className="mx-2 mb-4 mt-2  flex flex-col">
+          <p className="mb-2 mr-2 transform text-left ">
+            Talla: {statusSize ? `${selectedSizeObject.name}` : ""}
+          </p>
+          <div className="flex flex-row">
+            {sizes.map((size) => (
+              <div
+                key={size.id}
+                className={`h-6 w-6 border ${getSizeStyle(
+                  size,
+                )} mr-2 flex cursor-pointer items-center justify-center`}
+                onMouseOver={() => handleSizeHover(size)}
+                onMouseOut={() => handleSizeHoverOut()}
+                onClick={() => handleSizeClick(size)}
+              >
+                {size.name}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -189,7 +223,10 @@ const BuyAction = ({ product }) => {
       </div>
 
       {/* Precio del producto */}
-      <p className="mt-4 text-lg font-bold">{`$${product.price.toFixed(2)}`}</p>
+      <p className="mt-4 text-lg font-bold">{`$${product.price.toLocaleString(
+        "es-ES",
+        { style: "decimal" },
+      )}`}</p>
 
       {/* Lista numérica de cantidad */}
       <div className="mt-4 flex items-center space-x-2">

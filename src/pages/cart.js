@@ -13,7 +13,7 @@ function Cart() {
             <ShoppingCart />
             <OrderTotal />
           </div>
-          <HorizontalScrollList />
+          {/*<HorizontalScrollList />*/}
         </div>
       </Layout>
     </CartProvider>

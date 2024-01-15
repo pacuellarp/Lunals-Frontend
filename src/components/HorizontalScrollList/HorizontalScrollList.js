@@ -29,7 +29,6 @@ export default function HorizontalScrollList() {
         }
 
         const randomNumbers = generateRandomNumbers(productData.length);
-        console.log(randomNumbers);
         const filteredProducts = productData.filter((item) =>
           randomNumbers.includes(item.id),
         );

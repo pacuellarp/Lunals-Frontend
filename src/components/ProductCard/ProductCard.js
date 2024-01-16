@@ -27,7 +27,11 @@ export default function ProductCard({
             {gender.name}, {sizes.map((size) => size.name).join("-")}
           </p>
           <p className="font-inter text-base">{product.name}</p>
-          <p className="font-inter text-base font-bold">$ {product.price}</p>
+          <p className="font-inter text-base font-bold">
+            {`$ ${product.price.toLocaleString("es-ES", {
+              style: "decimal",
+            })}`}
+          </p>
         </figcaption>
       </figure>
     </>

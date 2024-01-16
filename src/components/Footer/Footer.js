@@ -92,7 +92,7 @@ export default function Header() {
                 </li>
               </nav>
             </div>
-            <div class="w-full px-4 md:w-1/2 lg:w-1/4">
+            {/*<div class="w-full px-4 md:w-1/2 lg:w-1/4">
               <h2 class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-gray-900">
                 Visítanos
               </h2>
@@ -113,7 +113,7 @@ export default function Header() {
                   </button>
                 </li>
               </nav>
-            </div>
+            </div>*/}
 
             <div class="w-full px-4 md:w-1/2 lg:w-1/4 ">
               <h2 class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-gray-900">

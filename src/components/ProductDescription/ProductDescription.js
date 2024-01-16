@@ -56,7 +56,7 @@ export default function ProductDescription({ product }) {
           />
         </div>
         {expandedOverview && (
-          <p className="py-1 pl-2 text-xs">- {`${product.overview}`}</p>
+          <p className="py-2 pl-2 text-xs">- {`${product.overview}`}</p>
         )}
       </div>
       <div className=" transition-height ease relative flex cursor-pointer flex-col overflow-hidden border-b border-gray-300 bg-white duration-300">
@@ -87,7 +87,7 @@ export default function ProductDescription({ product }) {
           />
         </div>
         {expandedMaterials && (
-          <p className="py-1 pl-2 text-xs">
+          <p className="py-2 pl-2 text-xs">
             -Referencia del producto: {`${product.reference}`}.
             <br />
             <br />- {`${product.material}`}.
@@ -96,6 +96,8 @@ export default function ProductDescription({ product }) {
             disponibles.
             <br />
             <br />- Lavado a mano con agua fría o lavandería, no lavar en seco.
+            <br />
+            <br />- Hecho en Colombia.
           </p>
         )}
       </div>

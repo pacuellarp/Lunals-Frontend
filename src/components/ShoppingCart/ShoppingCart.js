@@ -34,6 +34,14 @@ const ShoppingCart = () => {
 
   const router = useRouter();
 
+  const handleGoBack = () => {
+    if (window.history.length > 1) {
+      router.back();
+    } else {
+      router.push("/");
+    }
+  };
+
   const phoneNumber = "573185575555"; // Reemplaza con el número de teléfono deseado
   let defaultMessage = "¡Hola! Estoy interesado en ";
 
@@ -160,9 +168,7 @@ const ShoppingCart = () => {
       </button>
       <button
         className={`mt-4 border border-black bg-white px-4 py-2 text-black transition duration-300 ease-in-out hover:bg-gray-200`}
-        onClick={() => {
-          router.back();
-        }}
+        onClick={handleGoBack}
       >
         SEGUIR COMPRANDO
       </button>

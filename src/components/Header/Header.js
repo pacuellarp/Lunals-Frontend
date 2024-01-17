@@ -51,6 +51,7 @@ export default function Header() {
             quality={100}
             priority={true}
             className="object-cover"
+            title="Página principal"
           />
         </Link>
         <ul
@@ -61,7 +62,7 @@ export default function Header() {
           {categories.map((category) => (
             <Link href={`/category/${category.id}`}>
               <li
-                className="lg:text-md mr-3 text-xs hover:font-bold hover:text-gray-900 md:mr-5 md:opacity-100"
+                className="font-inter mr-3 text-xs hover:font-bold hover:text-gray-900 md:mr-5 md:opacity-100 lg:text-sm"
                 key={category.id}
               >
                 {category.name}
@@ -75,7 +76,7 @@ export default function Header() {
             width="0"
             height="0"
             sizes="100vw"
-            className="h-auto w-6 md:w-8"
+            className="hidden h-auto w-6 md:w-8"
             alt="Search"
             quality={100}
           />
@@ -110,7 +111,7 @@ export default function Header() {
         >
           {categories.map((category) => (
             <li
-              className="mr-3 text-xs hover:font-bold hover:text-gray-900 md:mr-5 md:text-sm lg:text-base xl:text-xl"
+              className=" font-inter mr-3 text-xs hover:font-bold hover:text-gray-900 md:mr-5 md:text-sm lg:text-base xl:text-xl"
               key={category.id}
             >
               {category.name}

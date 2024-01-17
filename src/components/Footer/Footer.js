@@ -18,6 +18,7 @@ export default function Header() {
                   quality={100}
                   priority={true}
                   class="object-cover"
+                  title="Página principal"
                 />
               </figure>
             </Link>

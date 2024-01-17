@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Banner from "@components/Banner/Banner";
+import Modal from "@components/Modal/Modal";
 import { useRouter } from "next/router";
 import { getPhotos } from "@services/PhotosService";
 import { useCart } from "@context/CartContext";
@@ -8,6 +10,8 @@ const ShoppingCart = () => {
   const [buttonHovered, setButtonHovered] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [photosStatus, setPhotosStatus] = useState(false);
+  const [isBannerVisible, setIsBannerVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { cart, removeFromCart, updateQuantity, emptyTheCart, cartCount } =
     useCart();
 
@@ -47,50 +51,86 @@ const ShoppingCart = () => {
 
   const handleRemove = (index) => {
     removeFromCart(index);
+    handleRemoveProduct();
   };
 
   const handleQuantityChange = (index, quantity) => {
     updateQuantity(index, quantity);
   };
 
-  const handleConfirmPurchase = () => {
-    cart.map((item, index) => {
-      let text;
-      text = `${
-        item.quantity
-      } ${item.product.name.toLowerCase()} color ${item.colour.name.toLowerCase()} talla ${
-        item.size.name
-      }`;
+  //Función para ver si el estado cart está en sincronía con el localStorage, pra evitar productos fantasma en el carrito
+  function cartLocalStorageSynchrony(arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+      return false;
+    }
 
-      if (index > 0 && index + 1 != cart.length) {
-        text = `, ${
-          item.quantity
-        } ${item.product.name.toLowerCase()} color ${item.colour.name.toLowerCase()} talla ${
-          item.size.name
-        }`;
-      } else if (index + 1 == cart.length && cart.length != 1) {
-        text = ` y ${
-          item.quantity
-        } ${item.product.name.toLowerCase()} color ${item.colour.name.toLowerCase()} talla ${
-          item.size.name
-        }`;
-      }
+    // Clonar los arrays para evitar modificar los originales
+    const copiaArr1 = JSON.parse(JSON.stringify(arr1));
+    const copiaArr2 = JSON.parse(JSON.stringify(arr2));
 
-      defaultMessage = defaultMessage + text;
-    });
+    // Ordenar los arrays por sus propiedades antes de la comparación
+    copiaArr1.sort((a, b) => JSON.stringify(a) - JSON.stringify(b));
+    copiaArr2.sort((a, b) => JSON.stringify(a) - JSON.stringify(b));
 
-    defaultMessage =
-      defaultMessage + ". Espero tu respuesta lo más pronto posible. ";
-
-    const encodedMessage = encodeURIComponent(defaultMessage);
-    window.open(
-      `https://wa.me/${phoneNumber}?text=${encodedMessage}`,
-      "_blank",
+    // Comparar cada elemento en las posiciones correspondientes
+    return copiaArr1.every(
+      (element, index) =>
+        JSON.stringify(element) === JSON.stringify(copiaArr2[index]),
     );
+  }
 
-    alert("¡Continua en nuestro chat de WhatsApp!");
-    emptyTheCart();
-    router.push("/");
+  const handleConfirmPurchase = () => {
+    //Comparación si cart está sincronizado con el localStorage
+    const storedCart = JSON.parse(localStorage.getItem("cart"));
+    const resultado = cartLocalStorageSynchrony(storedCart, cart);
+    if (resultado) {
+      cart.map((item, index) => {
+        let text;
+        text = `${
+          item.quantity
+        } ${item.product.name.toLowerCase()} color ${item.colour.name.toLowerCase()} talla ${
+          item.size.name
+        }`;
+
+        if (index > 0 && index + 1 != cart.length) {
+          text = `, ${
+            item.quantity
+          } ${item.product.name.toLowerCase()} color ${item.colour.name.toLowerCase()} talla ${
+            item.size.name
+          }`;
+        } else if (index + 1 == cart.length && cart.length != 1) {
+          text = ` y ${
+            item.quantity
+          } ${item.product.name.toLowerCase()} color ${item.colour.name.toLowerCase()} talla ${
+            item.size.name
+          }`;
+        }
+
+        defaultMessage = defaultMessage + text;
+      });
+
+      defaultMessage =
+        defaultMessage + ". Espero tu respuesta lo más pronto posible. ";
+
+      const encodedMessage = encodeURIComponent(defaultMessage);
+      window.open(
+        `https://wa.me/${phoneNumber}?text=${encodedMessage}`,
+        "_blank",
+      );
+
+      alert("¡Continua en nuestro chat de WhatsApp!");
+      emptyTheCart();
+      router.push("/");
+    } else {
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleRemoveProduct = () => {
+    setIsBannerVisible(true);
+    setTimeout(() => {
+      setIsBannerVisible(false);
+    }, 2300);
   };
 
   return (
@@ -172,6 +212,25 @@ const ShoppingCart = () => {
       >
         SEGUIR COMPRANDO
       </button>
+      {isBannerVisible && (
+        <Banner
+          message="Producto eliminado del carrito."
+          buyingOrRemoving="removing"
+        />
+      )}
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+          }}
+          message="Error. Actualiza la pantalla."
+          buttonText="Recargar página"
+          onClickButton={() => {
+            location.reload();
+          }}
+        />
+      )}
     </div>
   );
 };

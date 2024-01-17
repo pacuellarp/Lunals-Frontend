@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Banner from "@components/Banner/Banner";
+import Modal from "@components/Modal/Modal";
 import { getSizes } from "@services/SizesServices";
 import { getColors } from "@services/ColorsService";
 import { useCart } from "@context/CartContext";
@@ -20,6 +22,8 @@ const BuyAction = ({ product }) => {
   const [buttonHovered, setButtonHovered] = useState(false);
   const { cart, addToCart } = useCart();
   const sizesPerDefault = ["XS", "S", "M", "L"];
+  const [isBannerVisible, setIsBannerVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchSizesAndColours = async () => {
@@ -141,6 +145,13 @@ const BuyAction = ({ product }) => {
     );
   }
 
+  const handleAddProduct = () => {
+    setIsBannerVisible(true);
+    setTimeout(() => {
+      setIsBannerVisible(false);
+    }, 2300);
+  };
+
   const handleAddToCart = () => {
     //Comparación si cart está sincronizado con el localStorage
     const storedCart = JSON.parse(localStorage.getItem("cart"));
@@ -162,12 +173,13 @@ const BuyAction = ({ product }) => {
         setSelectedQuantity(1);
         setStatusSize(false);
         setStatusColour(false);
+        handleAddProduct();
       } else {
         // Mostrar un mensaje de error o realizar alguna acción
         alert("Por favor, selecciona talla y color.");
       }
     } else {
-      alert("Error. Actualiza la pantalla.");
+      setIsModalOpen(true);
     }
   };
 
@@ -259,6 +271,22 @@ const BuyAction = ({ product }) => {
       >
         ADICIONAR AL CARRITO
       </button>
+      {isBannerVisible && (
+        <Banner message="¡Producto agregado!" buyingOrRemoving="buying" />
+      )}
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+          }}
+          message="Error. Actualiza la pantalla."
+          buttonText="Recargar página"
+          onClickButton={() => {
+            location.reload();
+          }}
+        />
+      )}
     </div>
   );
 };

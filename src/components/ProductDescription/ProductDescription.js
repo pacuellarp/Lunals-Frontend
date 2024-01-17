@@ -25,7 +25,7 @@ export default function ProductDescription({ product }) {
 
   return (
     <div className="flex flex-col pb-3 pt-10">
-      <h1 className="font-inter py-3 text-left text-lg leading-normal text-black sm:text-xl">
+      <h1 className="font-inter py-3 text-left text-lg leading-normal text-black max-md:pl-4 sm:text-xl">
         Descripción
       </h1>
       <div className=" transition-height ease relative flex cursor-pointer flex-col overflow-hidden border-b border-t border-gray-300 bg-white duration-300">

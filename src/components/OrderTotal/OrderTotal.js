@@ -17,9 +17,11 @@ export default function OrderTotal() {
   }, [cart]);
 
   return (
-    <div className="my-6 mr-16 h-1/3 w-1/4 rounded-md bg-gray-200 p-4">
+    <div className="my-6 w-2/3 rounded-md bg-gray-200 p-4 md:w-1/2 lg:w-1/3 xl:mr-16 xl:h-1/3 xl:w-1/4">
       <div className="mb-2 flex justify-between">
-        <span>Elementos en la orden</span>
+        <spanv className="max-md:text-sm max-[550px]:text-xs">
+          Elementos en la orden
+        </spanv>
         <span>{`${items} item(s)`}</span>
       </div>
       <hr className="mb-2 border-t border-gray-300" />

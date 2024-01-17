@@ -18,12 +18,17 @@ const ProductPage = ({ product }) => {
               Ref.: {`${product.reference}`}
             </p>
           </div>
-          <div className="flex flex-row justify-center py-9">
+          <div className="flex flex-col justify-center py-9 md:flex-row">
             <div className="flex flex-col">
               <Gallery product={product} />
-              <ProductDescription product={product} />
+              <div className="hidden md:block">
+                <ProductDescription product={product} />
+              </div>
             </div>
             <BuyAction product={product} />
+            <div className="block md:hidden">
+              <ProductDescription product={product} />
+            </div>
           </div>
         </div>
       </Layout>

@@ -25,7 +25,7 @@ export default function Gallery({ product }) {
   };
 
   return (
-    <div className="flex flex-row justify-around">
+    <div className="flex flex-row justify-around max-[500px]:pl-12">
       <div className="mr-4 w-12">
         {photos.map((photo) => (
           <figure
@@ -45,7 +45,7 @@ export default function Gallery({ product }) {
         ))}
       </div>
       <div className="flex flex-col">
-        <figure className="w-3/5">
+        <figure className="w-4/5">
           {selectedPhoto && (
             <Image
               src={selectedPhoto.link}

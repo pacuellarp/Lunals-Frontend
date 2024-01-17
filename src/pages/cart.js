@@ -9,7 +9,7 @@ function Cart() {
     <CartProvider>
       <Layout>
         <div className="flex flex-col">
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-col items-center xl:flex-row xl:justify-between">
             <ShoppingCart />
             <OrderTotal />
           </div>

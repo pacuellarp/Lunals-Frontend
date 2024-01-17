@@ -134,7 +134,7 @@ const ShoppingCart = () => {
   };
 
   return (
-    <div className="ml-16 flex w-1/3 flex-col py-3 pl-6 text-left">
+    <div className="flex w-2/3 flex-col py-3 text-left md:w-1/2 xl:ml-16 xl:w-1/3 xl:pl-6">
       <h1 className="font-inter py-3 text-xl font-normal leading-normal text-black sm:text-2xl">
         Carrito de Compras
       </h1>
@@ -142,17 +142,17 @@ const ShoppingCart = () => {
         <ul className="flex flex-col py-3">
           {cart.map((item, index) => (
             <li key={index} className="flex flex-col py-3">
-              <div className="grid grid-flow-col justify-stretch">
+              <div className="grid grid-flow-col justify-between">
                 <figure className="flex justify-center">
                   <Image
                     src={photos[index][0].link}
                     width={768}
                     height={1024}
-                    className=" w-1/3"
+                    className="max-sm:h-4/5w-2/3 max-md:h-1/2 max-md:w-5/6 max-sm:h-4/5 md:w-1/3"
                     alt={`Image product`}
                   />
                 </figure>
-                <div>
+                <div className="max-[550px]:text-sm max-[400px]:text-xs">
                   <p>Producto: {item.product.name}</p>
                   <p>Talla: {item.size.name}</p>
                   <p>Color: {item.colour.name}</p>

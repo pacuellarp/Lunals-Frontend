@@ -8,6 +8,6 @@ export async function getCategories(genderId) {
     });
     return response;
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 }

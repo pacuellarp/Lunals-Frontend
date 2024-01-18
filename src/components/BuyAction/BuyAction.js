@@ -4,7 +4,6 @@ import Modal from "@components/Modal/Modal";
 import { getSizes } from "@services/SizesServices";
 import { getColors } from "@services/ColorsService";
 import { useCart } from "@context/CartContext";
-import Image from "next/image";
 import Link from "next/link";
 
 const BuyAction = ({ product }) => {
@@ -33,7 +32,7 @@ const BuyAction = ({ product }) => {
         setSizes(sizes0);
         setColours(colours0);
       } catch (error) {
-        throw error;
+        console.error(error);
       }
     };
 
@@ -197,9 +196,18 @@ const BuyAction = ({ product }) => {
                 key={colour.id}
                 className="mr-2 h-6 w-6 cursor-pointer border border-gray-300"
                 style={getColourStyle(colour)}
+                tabIndex={0}
+                role="button" // Añadido para cumplir con la accesibilidad
                 onMouseOver={() => handleColourHover(colour)}
                 onMouseOut={() => handleColourHoverOut()}
+                onFocus={() => handleColourHover(colour)}
+                onBlur={() => handleColourHoverOut()}
                 onClick={() => handleColourClick(colour)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleColourClick(colour);
+                  }
+                }}
               />
             ))}
           </div>
@@ -215,9 +223,18 @@ const BuyAction = ({ product }) => {
                 className={`h-6 w-6 border ${getSizeStyle(
                   size,
                 )} mr-2 flex cursor-pointer items-center justify-center`}
+                tabIndex={0}
+                role="button"
                 onMouseOver={() => handleSizeHover(size)}
                 onMouseOut={() => handleSizeHoverOut()}
+                onFocus={() => handleSizeHover(size)}
+                onBlur={() => handleSizeHoverOut()}
                 onClick={() => handleSizeClick(size)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    handleSizeClick(size);
+                  }
+                }}
               >
                 {size.name}
               </div>
@@ -267,6 +284,8 @@ const BuyAction = ({ product }) => {
         } transition duration-300 ease-in-out`}
         onMouseOver={() => setButtonHovered(true)}
         onMouseOut={() => setButtonHovered(false)}
+        onFocus={() => setButtonHovered(true)}
+        onBlur={() => setButtonHovered(false)}
         onClick={handleAddToCart}
       >
         ADICIONAR AL CARRITO

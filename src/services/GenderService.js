@@ -5,6 +5,6 @@ export async function getGenders() {
     const response = await getEntity("genders");
     return response;
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 }

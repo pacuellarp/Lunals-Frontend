@@ -1,5 +1,3 @@
-import getEntity from "@services/api/Get";
-
 export function getColors() {
   return [
     { id: 1, name: "rosa", hexCode: "#FFB6C1" },

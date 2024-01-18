@@ -22,7 +22,7 @@ export default function Header() {
         setCategories(response);
         setAnimateCategories(true);
       } catch (error) {
-        throw error;
+        console.error(error);
       }
     }
 
@@ -60,11 +60,8 @@ export default function Header() {
           } hidden flex-wrap items-center justify-around pl-4 text-xs font-semibold md:ml-auto md:mr-auto md:flex md:pl-8 md:text-sm `}
         >
           {categories.map((category) => (
-            <Link href={`/category/${category.id}`}>
-              <li
-                className="font-inter mr-3 text-xs hover:font-bold hover:text-gray-900 md:mr-5 md:opacity-100 lg:text-sm"
-                key={category.id}
-              >
+            <Link key={category.id} href={`/category/${category.id}`}>
+              <li className="font-inter mr-3 text-xs hover:font-bold hover:text-gray-900 md:mr-5 md:opacity-100 lg:text-sm">
                 {category.name}
               </li>
             </Link>

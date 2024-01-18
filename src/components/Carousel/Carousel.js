@@ -23,7 +23,7 @@ export default function Carousel() {
         const response = await getPhotos(1);
         setPhotos(response);
       } catch (error) {
-        throw error;
+        console.error(error);
       }
     }
 
@@ -32,7 +32,7 @@ export default function Carousel() {
         const response = await getVideos(1);
         setVideos(response);
       } catch (error) {
-        throw error;
+        console.error(error);
       }
     }
 

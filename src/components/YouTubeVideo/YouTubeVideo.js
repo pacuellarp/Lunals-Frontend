@@ -1,18 +1,8 @@
 // YoutubeVideo.js
-import React, { useState } from "react";
+import React from "react";
 import YouTube from "react-youtube";
 
 const YoutubeVideo = ({ videoId }) => {
-  const [isMouseOver, setIsMouseOver] = useState(false);
-
-  const handleMouseOver = () => {
-    setIsMouseOver(true);
-  };
-
-  const handleMouseOut = () => {
-    setIsMouseOver(false);
-  };
-
   const opts = {
     height: "480",
     width: "640",
@@ -35,11 +25,7 @@ const YoutubeVideo = ({ videoId }) => {
   };
 
   return (
-    <div
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
-      style={{ position: "relative", width: "640px", height: "480px" }}
-    >
+    <div style={{ position: "relative", width: "640px", height: "480px" }}>
       <YouTube videoId={videoId} opts={opts} onEnd={onEnd} />
       {/* Div superpuesto para bloquear eventos del mouse */}
       <div

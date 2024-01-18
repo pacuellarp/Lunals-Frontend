@@ -77,7 +77,7 @@ const CategoryPage = ({ category }) => {
         <div class="flex flex-col items-center py-12 md:grid md:grid-cols-2 md:pl-12 lg:grid-cols-3">
           {cardStatus &&
             products.map((product, index) => (
-              <Link href={`/product/${product.id}`}>
+              <Link key={product.id} href={`/product/${product.id}`}>
                 <ProductCard
                   photo1={photos[index][0]}
                   photo2={photos[index][1]}

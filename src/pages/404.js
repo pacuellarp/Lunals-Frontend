@@ -17,7 +17,7 @@ const NotFoundPage = () => {
             <p className="my-3 text-gray-600">
               <span>Haz click para ir a la </span>
               <span className="text-blue-500">
-                página principal de Lunal's Fashion Design
+                página principal de Lunal&apos;s Fashion Design
               </span>
               <span>.</span>
             </p>

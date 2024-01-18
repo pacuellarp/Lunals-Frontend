@@ -5,6 +5,6 @@ export async function getAllProducts() {
     const response = await getEntity("products");
     return response;
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 }

@@ -1,9 +1,7 @@
-export default async function getEntity(inputEntity,id) {
-
+export default async function getEntity(inputEntity, id) {
   // Use destructuring to get query params
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
 
   // Reusable function to fetch entities
   const fetchEntity = async (url) => {
@@ -11,29 +9,25 @@ export default async function getEntity(inputEntity,id) {
       const response = await fetch(url);
       return response.json();
     } catch (error) {
-      throw error;
+      console.log(error);
     }
-  }
+  };
 
   if (id) {
     try {
-      // Fetch single category if id provided  
+      // Fetch single category if id provided
       const entity = await fetchEntity(`${apiUrl}${inputEntity}/${id}`);
-      return entity
-      res.status(200).json(entity);
+      return entity;
     } catch (error) {
-     // handle error
+      // handle error
     }
-
   } else {
     try {
       // Fetch all categories if no id
       const entity = await fetchEntity(`${apiUrl}${inputEntity}`);
       return entity;
-      res.status(200).json(entity);
     } catch (error) {
-     // handle error 
+      // handle error
     }
   }
-
 }

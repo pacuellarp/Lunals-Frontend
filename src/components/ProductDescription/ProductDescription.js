@@ -34,6 +34,14 @@ export default function ProductDescription({ product }) {
           onClick={handleToggleOverview}
           onMouseEnter={handleMouseEnterOverview}
           onMouseLeave={handleMouseEnterOverview}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              // Manejar la acción que ocurre al presionar Enter
+              handleToggleOverview();
+            }
+          }}
+          role="button"
+          tabIndex={0} // Hace que el elemento sea focuseable
         >
           <div className="p-4">
             <p
@@ -65,6 +73,14 @@ export default function ProductDescription({ product }) {
           onClick={handleToggleMaterials}
           onMouseEnter={handleMouseEnterMaterials}
           onMouseLeave={handleMouseEnterMaterials}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              // Manejar la acción que ocurre al presionar Enter
+              handleToggleMaterials();
+            }
+          }}
+          role="button" // Añadido para indicar la función semántica del elemento
+          tabIndex={0} // Hace que el elemento sea focuseable
         >
           <div className="p-4">
             <p

@@ -195,14 +195,21 @@ const ShoppingCart = () => {
       </button>
       <button
         className={`${
-          cartCount == 0 ? "hidden" : ""
+          cartCount === 0 ? "hidden" : ""
         } mt-4 px-4 py-2 text-white ${
           buttonHovered ? "bg-green-500" : "bg-green-400"
         } transition duration-300 ease-in-out`}
         onMouseOver={() => setButtonHovered(true)}
         onMouseOut={() => setButtonHovered(false)}
-        //onClick={handleAddToCart}
         onClick={handleConfirmPurchase}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            // Manejar la acción que ocurre al presionar Enter
+            handleConfirmPurchase();
+          }
+        }}
+        onFocus={() => setButtonHovered(true)}
+        onBlur={() => setButtonHovered(false)}
       >
         CONTINUAR CON LA COMPRA
       </button>

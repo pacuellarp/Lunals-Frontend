@@ -1,11 +1,11 @@
-import '@styles/tailwind.css';
+import "@styles/tailwind.css";
 
 function MyApp({ Component, pageProps }) {
-  return(
+  return (
     <>
-        <Component {...pageProps} />
+      <Component {...pageProps} />
     </>
   );
 }
 
-export default MyApp
+export default MyApp;

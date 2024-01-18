@@ -2,7 +2,7 @@ import logo from "/public/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Header() {
+export default function Footer() {
   return (
     <div class="flex min-h-screen w-full items-end bg-white">
       <footer class="body-font w-full bg-gray-100 text-gray-700">
@@ -77,19 +77,28 @@ export default function Header() {
               </h2>
               <nav class="mb-10 list-none">
                 <li class="mt-3">
-                  <a class="cursor-pointer text-gray-500 hover:text-gray-900">
+                  <Link
+                    href="/"
+                    class="cursor-pointer text-gray-500 hover:text-gray-900"
+                  >
                     Nosotros
-                  </a>
+                  </Link>
                 </li>
                 <li class="mt-3">
-                  <a class="cursor-pointer text-gray-500 hover:text-gray-900">
+                  <Link
+                    href="/"
+                    class="cursor-pointer text-gray-500 hover:text-gray-900"
+                  >
                     Preguntas frecuentes
-                  </a>
+                  </Link>
                 </li>
                 <li class="mt-3">
-                  <a class="cursor-pointer text-gray-500 hover:text-gray-900">
+                  <Link
+                    href="/"
+                    class="cursor-pointer text-gray-500 hover:text-gray-900"
+                  >
                     Guía de tallas
-                  </a>
+                  </Link>
                 </li>
               </nav>
             </div>
@@ -122,19 +131,19 @@ export default function Header() {
               </h2>
               <nav class="mb-10 list-none">
                 <li class="mt-3">
-                  <a class="cursor-pointer text-gray-500 hover:text-gray-900">
+                  <button class="cursor-pointer text-gray-500 hover:text-gray-900">
                     Línea WhatsApp 1
-                  </a>
+                  </button>
                 </li>
                 <li class="mt-3">
-                  <a class="cursor-pointer text-gray-500 hover:text-gray-900">
+                  <button class="cursor-pointer text-gray-500 hover:text-gray-900">
                     Línea WhatsApp 2
-                  </a>
+                  </button>
                 </li>
                 <li class="mt-3">
-                  <a class="cursor-pointer text-gray-500 hover:text-gray-900">
+                  <button class="cursor-pointer text-gray-500 hover:text-gray-900">
                     Correo electrónico
-                  </a>
+                  </button>
                 </li>
               </nav>
             </div>
@@ -143,7 +152,7 @@ export default function Header() {
         <div class="bg-gray-300">
           <div class="container mx-auto px-5 py-4">
             <p class="text-sm capitalize text-gray-700 xl:text-center">
-              © {new Date().getFullYear()} Lunal's Fashion Design. Todos
+              © {new Date().getFullYear()} Lunal&apos;s Fashion Design. Todos
               derechos reservados.
             </p>
           </div>

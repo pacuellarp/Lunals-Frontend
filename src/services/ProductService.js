@@ -8,6 +8,6 @@ export async function getProduct(productId) {
     });
     return response;
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 }

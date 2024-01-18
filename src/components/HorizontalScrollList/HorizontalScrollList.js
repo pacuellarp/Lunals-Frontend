@@ -18,7 +18,7 @@ export default function HorizontalScrollList() {
       try {
         const productData = await getAllProducts();
 
-        function generateRandomNumbers(limit) {
+        const generateRandomNumbers = (limit) => {
           const numbers = [];
 
           for (let i = 0; i < 6; i++) {
@@ -26,7 +26,7 @@ export default function HorizontalScrollList() {
           }
 
           return numbers;
-        }
+        };
 
         const randomNumbers = generateRandomNumbers(productData.length);
         const filteredProducts = productData.filter((item) =>
@@ -73,7 +73,7 @@ export default function HorizontalScrollList() {
     <div className="flex overflow-x-auto">
       {cardStatus &&
         products.map((product, index) => (
-          <Link href={`/product/${product.id}`}>
+          <Link key={product.id} href={`/product/${product.id}`}>
             <ProductCard
               photo1={photos[index][0]}
               photo2={photos[index][1]}

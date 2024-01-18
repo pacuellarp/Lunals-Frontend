@@ -28,7 +28,7 @@ const nextConfig = {
 };
 
 module.exports = {
-  webpack: (config, options) => {
+  webpack: (config) => {
     console.log(config); // Prints the modified webpack config
 
     return config;

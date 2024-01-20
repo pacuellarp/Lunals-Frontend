@@ -58,6 +58,16 @@ const CategoryPage = ({ category }) => {
     const fetchData = async () => {
       if (photos.length > 0) {
         setTimeout(() => setCardStatus(true), 250);
+        console.log(
+          "Category: ",
+          category,
+          "Products: ",
+          products,
+          "Genders: ",
+          genders,
+          "Photos: ",
+          photos,
+        );
       }
     };
 

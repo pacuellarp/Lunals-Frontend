@@ -12,6 +12,7 @@ const ShoppingCart = () => {
   const [photosStatus, setPhotosStatus] = useState(false);
   const [isBannerVisible, setIsBannerVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [finalModal, setFinalModal] = useState(false);
   const { cart, removeFromCart, updateQuantity, emptyTheCart, cartCount } =
     useCart();
 
@@ -117,10 +118,8 @@ const ShoppingCart = () => {
         `https://wa.me/${phoneNumber}?text=${encodedMessage}`,
         "_blank",
       );
-
-      alert("¡Continua en nuestro chat de WhatsApp!");
       emptyTheCart();
-      router.push("/");
+      setFinalModal(true);
     } else {
       setIsModalOpen(true);
     }
@@ -235,6 +234,19 @@ const ShoppingCart = () => {
           buttonText="Recargar página"
           onClickButton={() => {
             location.reload();
+          }}
+        />
+      )}
+      {finalModal && (
+        <Modal
+          isOpen={finalModal}
+          onClose={() => {
+            setFinalModal(false);
+          }}
+          message="Continua en nuestro chat directo de venta. ¡Gracias por elegirnos!"
+          buttonText="Continuar"
+          onClickButton={() => {
+            router.push("/");
           }}
         />
       )}

@@ -59,13 +59,18 @@ export default function Header() {
             animateCategories ? "animate-fadeIn" : ""
           } hidden flex-wrap items-center justify-around pl-4 text-xs font-semibold md:ml-auto md:mr-auto md:flex md:pl-8 md:text-sm `}
         >
-          {categories.map((category) => (
-            <Link key={category.id} href={`/category/${category.id}`}>
-              <li className="font-inter mr-3 text-xs hover:font-bold hover:text-gray-900 md:mr-5 md:opacity-100 lg:text-sm">
-                {category.name}
-              </li>
-            </Link>
-          ))}
+          {categories &&
+            categories.map((category) => (
+              <Link
+                key={category.id}
+                href="/category/[category.id]"
+                as={`/category/${category.id}`}
+              >
+                <li className="font-inter mr-3 text-xs hover:font-bold hover:text-gray-900 md:mr-5 md:opacity-100 lg:text-sm">
+                  {category.name}
+                </li>
+              </Link>
+            ))}
         </ul>
         <figure className="xl:w-1/10 flex h-auto w-3/12 flex-row justify-around space-x-2 md:w-2/12 md:justify-start lg:w-1/12">
           <Image

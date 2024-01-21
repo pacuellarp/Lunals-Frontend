@@ -2,42 +2,36 @@ import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Pagination } from "swiper/modules";
-import { getPhotos } from "@services/PhotosService";
-import { getVideos } from "@services/VideosService";
-import YoutubeVideo from "@components/YouTubeVideo/YouTubeVideo";
 import { HeaderContext } from "@context/HeaderContext";
 
 import "swiper/css";
 import "swiper/css/pagination";
 
 export default function Carousel() {
-  const [photos, setPhotos] = useState([]);
-  const [videos, setVideos] = useState([]);
   const [heightCarousel, setHeightCarousel] = useState(0);
 
   const { headerHeight } = useContext(HeaderContext);
 
+  const photos = [
+    {
+      id: 1,
+      link: "https://drive.google.com/uc?export=view&id=1DC0MBF4HZAt-6LB818GlTzO_6dMo4-YM",
+    },
+    {
+      id: 2,
+      link: "https://drive.google.com/uc?export=view&id=1DC0MBF4HZAt-6LB818GlTzO_6dMo4-YM",
+    },
+    {
+      id: 3,
+      link: "https://drive.google.com/uc?export=view&id=1DC0MBF4HZAt-6LB818GlTzO_6dMo4-YM",
+    },
+    {
+      id: 4,
+      link: "https://drive.google.com/uc?export=view&id=1DC0MBF4HZAt-6LB818GlTzO_6dMo4-YM",
+    },
+  ];
+
   useEffect(() => {
-    async function fetchPhotos() {
-      try {
-        const response = await getPhotos(1);
-        setPhotos(response);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    async function fetchVideos() {
-      try {
-        const response = await getVideos(1);
-        setVideos(response);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchPhotos();
-    fetchVideos();
     if (headerHeight !== null) {
       const height = window.innerHeight - headerHeight;
       setHeightCarousel(height);
@@ -45,6 +39,8 @@ export default function Carousel() {
   }, [headerHeight]);
 
   let carouselMessages = [
+    ["Lorem ipsum", "Lorem ipsum"],
+    ["Lorem ipsum", "Lorem ipsum"],
     ["Lorem ipsum", "Lorem ipsum"],
     ["Lorem ipsum", "Lorem ipsum"],
   ];
@@ -98,7 +94,7 @@ export default function Carousel() {
           </SwiperSlide>
         ))}
 
-        {videos.map((video, index) => (
+        {/*{videos.map((video, index) => (
           <SwiperSlide key={video.id}>
             <div
               style={{ position: "relative", width: "100%", height: "100%" }}
@@ -110,8 +106,8 @@ export default function Carousel() {
               />
             </div>
             <figcaption className="text-container">Video {index}</figcaption>
-          </SwiperSlide>
-        ))}
+        </SwiperSlide>
+        ))}*/}
       </Swiper>
     </>
   );

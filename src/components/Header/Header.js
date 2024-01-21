@@ -111,14 +111,21 @@ export default function Header() {
             animateCategories ? "animate-fadeIn" : ""
           } flex flex-row items-center justify-center text-xs font-semibold md:translate-y-0 md:text-sm`}
         >
-          {categories.map((category) => (
-            <li
-              className=" font-inter mr-3 text-xs hover:font-bold hover:text-gray-900 md:mr-5 md:text-sm lg:text-base xl:text-xl"
-              key={category.id}
-            >
-              {category.name}
-            </li>
-          ))}
+          {categories &&
+            categories.map((category) => (
+              <Link
+                key={category.id}
+                href="/category/[category.id]"
+                as={`/category/${category.id}`}
+              >
+                <li
+                  className=" font-inter mr-3 text-xs hover:font-bold hover:text-gray-900 md:mr-5 md:text-sm lg:text-base xl:text-xl"
+                  key={category.id}
+                >
+                  {category.name}
+                </li>
+              </Link>
+            ))}
         </ul>
       </div>
     </header>

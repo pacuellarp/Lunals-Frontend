@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Banner from "@components/Banner/Banner";
 import Modal from "@components/Modal/Modal";
 import { useRouter } from "next/router";
 import { getPhotos } from "@services/PhotosService";
 import { useCart } from "@context/CartContext";
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ handleRemoveProduct }) => {
   const [buttonHovered, setButtonHovered] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [photosStatus, setPhotosStatus] = useState(false);
-  const [isBannerVisible, setIsBannerVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [finalModal, setFinalModal] = useState(false);
   const { cart, removeFromCart, updateQuantity, emptyTheCart, cartCount } =
@@ -125,13 +123,6 @@ const ShoppingCart = () => {
     }
   };
 
-  const handleRemoveProduct = () => {
-    setIsBannerVisible(true);
-    setTimeout(() => {
-      setIsBannerVisible(false);
-    }, 2300);
-  };
-
   return (
     <div className="flex w-2/3 flex-col py-3 text-left md:w-1/2 xl:ml-16 xl:w-1/3 xl:pl-6">
       <h1 className="font-inter py-3 text-xl font-normal leading-normal text-black sm:text-2xl">
@@ -218,12 +209,6 @@ const ShoppingCart = () => {
       >
         SEGUIR COMPRANDO
       </button>
-      {isBannerVisible && (
-        <Banner
-          message="Producto eliminado del carrito."
-          buyingOrRemoving="removing"
-        />
-      )}
       {isModalOpen && (
         <Modal
           isOpen={isModalOpen}

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Banner from "@components/Banner/Banner";
 import Modal from "@components/Modal/Modal";
 import { getSizes } from "@services/SizesServices";
 import { getColors } from "@services/ColorsService";
 import { useCart } from "@context/CartContext";
 import Link from "next/link";
 
-const BuyAction = ({ product }) => {
+const BuyAction = ({ product, onBannerActivate }) => {
   const [sizes, setSizes] = useState([]);
   const [colours, setColours] = useState([]);
   const [hoveredSize, setHoveredSize] = useState(null);
@@ -21,7 +20,6 @@ const BuyAction = ({ product }) => {
   const [buttonHovered, setButtonHovered] = useState(false);
   const { cart, addToCart } = useCart();
   const sizesPerDefault = ["XS", "S", "M", "L"];
-  const [isBannerVisible, setIsBannerVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -144,13 +142,6 @@ const BuyAction = ({ product }) => {
     );
   }
 
-  const handleAddProduct = () => {
-    setIsBannerVisible(true);
-    setTimeout(() => {
-      setIsBannerVisible(false);
-    }, 2300);
-  };
-
   const handleAddToCart = () => {
     //Comparación si cart está sincronizado con el localStorage
     const storedCart = JSON.parse(localStorage.getItem("cart"));
@@ -172,7 +163,7 @@ const BuyAction = ({ product }) => {
         setSelectedQuantity(1);
         setStatusSize(false);
         setStatusColour(false);
-        handleAddProduct();
+        onBannerActivate();
       } else {
         // Mostrar un mensaje de error o realizar alguna acción
         alert("Por favor, selecciona talla y color.");
@@ -290,9 +281,6 @@ const BuyAction = ({ product }) => {
       >
         ADICIONAR AL CARRITO
       </button>
-      {isBannerVisible && (
-        <Banner message="¡Producto agregado!" buyingOrRemoving="buying" />
-      )}
       {isModalOpen && (
         <Modal
           isOpen={isModalOpen}

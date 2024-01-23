@@ -1,11 +1,22 @@
+import { useState } from "react";
 import { getProduct } from "@services/ProductService";
 import Layout from "@layout/MainLayout";
 import Gallery from "@components/Gallery/Gallery";
 import BuyAction from "@components/BuyAction/BuyAction";
 import ProductDescription from "@components/ProductDescription/ProductDescription";
 import { CartProvider } from "@context/CartContext";
+import Banner from "@components/Banner/Banner";
 
 const ProductPage = ({ product }) => {
+  const [isBannerVisible, setIsBannerVisible] = useState(false);
+
+  const handleBannerActivate = () => {
+    setIsBannerVisible(true);
+    setTimeout(() => {
+      setIsBannerVisible(false);
+    }, 2300);
+  };
+
   return (
     <CartProvider>
       <Layout>
@@ -25,10 +36,16 @@ const ProductPage = ({ product }) => {
                 <ProductDescription product={product} />
               </div>
             </div>
-            <BuyAction product={product} />
+            <BuyAction
+              product={product}
+              onBannerActivate={handleBannerActivate}
+            />
             <div className="block md:hidden">
               <ProductDescription product={product} />
             </div>
+            {isBannerVisible && (
+              <Banner message="¡Producto agregado!" buyingOrRemoving="buying" />
+            )}
           </div>
         </div>
       </Layout>

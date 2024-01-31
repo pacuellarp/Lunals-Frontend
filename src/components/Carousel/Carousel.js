@@ -19,15 +19,15 @@ export default function Carousel() {
     },
     {
       id: 2,
-      link: "https://drive.google.com/uc?export=view&id=1MGsJruhuBtb89Ixut0IUTSPb1081tIMU",
+      link: "https://drive.google.com/uc?export=view&id=19DsOsZqm6lntBbqT45CC8U37k8CZ7EOA",
     },
     {
       id: 3,
-      link: "https://drive.google.com/uc?export=view&id=1RQ4TqT3qSZ5vjwwnY2h_QLL9U_Jnyd33",
+      link: "https://drive.google.com/uc?export=view&id=1gRFITfIjXD20PKC0Jd5wtPL1KYvWmGMY",
     },
     {
       id: 4,
-      link: "https://drive.google.com/uc?export=view&id=1QxkW9w6isI7XI4WpO8R7juXd8RpzWP7g",
+      link: "https://drive.google.com/uc?export=view&id=1t_tvKqiSV2yY0Mmry10DtqdcutSMKnKv",
     },
   ];
 

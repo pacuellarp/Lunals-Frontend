@@ -19,7 +19,7 @@ const ProductPage = ({ product }) => {
 
   return (
     <CartProvider>
-      <Layout>
+      <Layout pageName={`${product.name} | Lunal's Fashion Design`}>
         <div className="my-12 flex flex-col">
           <div className="flex flex-col pb-3 pl-6">
             <h1 className="font-inter text-left text-xl leading-normal text-black sm:text-2xl">

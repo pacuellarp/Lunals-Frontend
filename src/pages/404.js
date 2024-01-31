@@ -6,7 +6,7 @@ import Layout from "@layout/MainLayout";
 
 const NotFoundPage = () => {
   return (
-    <Layout>
+    <Layout pageName={"Página no encontrada | Lunal's Fashion Design"}>
       <div className="flex h-screen flex-col items-center justify-center">
         <Link href="/">
           <div className="flex flex-col items-center justify-center text-center">

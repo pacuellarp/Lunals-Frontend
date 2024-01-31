@@ -17,7 +17,7 @@ function Cart() {
 
   return (
     <CartProvider>
-      <Layout>
+      <Layout pageName={"Carrito de compras | Lunal's Fashion Design"}>
         <div className="flex flex-col">
           <div className="flex flex-col items-center xl:flex-row xl:justify-between">
             <ShoppingCart handleRemoveProduct={handleBannerActivate} />

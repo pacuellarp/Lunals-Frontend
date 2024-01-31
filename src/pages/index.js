@@ -3,7 +3,7 @@ import Carousel from "@components/Carousel/Carousel";
 
 export default function Home() {
   return (
-    <Layout>
+    <Layout pageName={"Lunal's Fashion Design"}>
       <Carousel />
     </Layout>
   );

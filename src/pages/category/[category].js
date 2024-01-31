@@ -75,7 +75,7 @@ const CategoryPage = ({ category }) => {
   }, [photos]);
 
   return (
-    <Layout>
+    <Layout pageName={`${category.name} | Lunal's Fashion Design`}>
       <div class="my-12 flex flex-col">
         <h1 class="font-inter py-3 pl-6 text-left text-xl font-normal leading-normal text-black sm:text-2xl">
           {category.name}

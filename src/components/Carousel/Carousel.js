@@ -57,6 +57,7 @@ export default function Carousel() {
         }}
         modules={[Mousewheel, Pagination]}
         style={{ height: heightCarousel }}
+        quality={100}
         className="w-full rounded-lg"
       >
         {photos.map((photo, index) => (

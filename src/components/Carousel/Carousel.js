@@ -15,19 +15,19 @@ export default function Carousel() {
   const photos = [
     {
       id: 1,
-      link: "https://drive.google.com/uc?export=view&id=1DC0MBF4HZAt-6LB818GlTzO_6dMo4-YM",
+      link: "https://drive.google.com/uc?export=view&id=1E348rN9aUJDLKrUby18bpzgg4fi1fcUc",
     },
     {
       id: 2,
-      link: "https://drive.google.com/uc?export=view&id=1DC0MBF4HZAt-6LB818GlTzO_6dMo4-YM",
+      link: "https://drive.google.com/uc?export=view&id=1MGsJruhuBtb89Ixut0IUTSPb1081tIMU",
     },
     {
       id: 3,
-      link: "https://drive.google.com/uc?export=view&id=1DC0MBF4HZAt-6LB818GlTzO_6dMo4-YM",
+      link: "https://drive.google.com/uc?export=view&id=1RQ4TqT3qSZ5vjwwnY2h_QLL9U_Jnyd33",
     },
     {
       id: 4,
-      link: "https://drive.google.com/uc?export=view&id=1DC0MBF4HZAt-6LB818GlTzO_6dMo4-YM",
+      link: "https://drive.google.com/uc?export=view&id=1QxkW9w6isI7XI4WpO8R7juXd8RpzWP7g",
     },
   ];
 
@@ -64,11 +64,11 @@ export default function Carousel() {
             <figure className="flex h-full w-full items-center justify-center">
               <Image
                 src={photo.link}
-                width={768}
-                height={1024}
+                fill={true}
                 className="block h-full w-full object-cover"
                 alt={`Slide ${index}`}
-                style={{ objectPosition: "top" }} // Ajuste para mostrar desde la parte superior
+                priority={true}
+                style={{ objectPosition: "center" }} // Ajuste para mostrar desde la parte superior
               />
               <figcaption className="absolute left-40 top-1/2 w-full max-w-xl -translate-y-1/2 transform text-left text-white">
                 <h2

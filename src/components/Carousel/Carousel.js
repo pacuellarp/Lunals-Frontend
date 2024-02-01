@@ -55,9 +55,9 @@ export default function Carousel() {
         pagination={{
           clickable: true,
         }}
+        touchReleaseOnEdges={true}
         modules={[Mousewheel, Pagination]}
         style={{ height: heightCarousel }}
-        quality={100}
         className="w-full rounded-lg"
       >
         {photos.map((photo, index) => (
@@ -69,6 +69,7 @@ export default function Carousel() {
                 className="block h-full w-full object-cover"
                 alt={`Slide ${index}`}
                 priority={true}
+                quality={100}
                 style={{ objectPosition: "center" }} // Ajuste para mostrar desde la parte superior
               />
               <figcaption className="absolute left-40 top-1/2 w-full max-w-xl -translate-y-1/2 transform text-left text-white">

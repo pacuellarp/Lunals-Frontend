@@ -20,3 +20,5 @@ body {
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-in-out; /* Duración y función de temporización de la animación */
 }
+
+

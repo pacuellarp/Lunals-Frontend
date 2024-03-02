@@ -10,6 +10,11 @@ module.exports = {
     colors: {
       ...colors,
     },
+    extend: {
+      screens: {
+        custom: "500px",
+      },
+    },
   },
   plugins: [],
 };
